@@ -287,9 +287,11 @@ void setLights(){
         break;
       case 11:   // OFF
         setColors(0, 0, 0);
+        wipe();
         break;
       default:
         setColors(0, 0, 0);
+        wipe();
 //       colorWipe(pixel.Color(0,0,0),5);
        break;  
     }
@@ -354,7 +356,8 @@ void colorWipe(uint32_t c, uint8_t wait) {
 
 void wipe(){
   if(neoPixelsWhite){
-    colorWipe(pixel.Color(red, green, blue, 0),10);
+    // My GRBW have twice the density of pixels and my GRB so they wipe faster
+    colorWipe(pixel.Color(red, green, blue, 0),5);
   } else {
     colorWipe(pixel.Color(red, green, blue),10);
   }
