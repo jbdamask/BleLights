@@ -54,11 +54,12 @@ Todo: Create classes for ble, touch and pixel functions.
     -----------------------------------------------------------------------*/
     #define FACTORYRESET_ENABLE     1
     #define PIN                     6
-    #define NUMPIXELS               120
+    #define NUMPIXELS               24
     #define BRIGHTNESS              30
     #define MIN                     1
     #define MAX                     255
     #define NUMTOUCH                12
+    #define DEVICE_NAME             "AT+GAPDEVNAME=TouchLightsBle"
 /*=========================================================================*/
 
 
@@ -68,7 +69,7 @@ Todo: Create classes for ble, touch and pixel functions.
  *  Set to true if using GRBW neopixels 
  *  (this code ignores white...but it will need to be passed if using GRBW)
  ---------------------------------------*/
-bool neoPixelsWhite = true;  
+bool neoPixelsWhite = false;  
 /*==========================================================================*/
 
 Adafruit_NeoPixel pixel;
@@ -155,6 +156,9 @@ void setup()
       error(F("Couldn't factory reset"));
     }
   }
+
+  // Customize name
+  ble.println(DEVICE_NAME);
 
   /* Disable command echo from Bluefruit */
   ble.echo(false);
